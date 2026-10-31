@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Student Management System</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2316a34a'><path d='M12 3L1 9l11 6 9-4.91V17h2V9L12 3z'/><path d='M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z'/></svg>">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Top decorative green accent bar -->
+  <div class="top-accent-bar"></div>
+
+  <div class="app-container">
+    <!-- Header with Navigation -->
+    <header class="app-header">
+      <div class="header-content">
+        <a href="/" class="brand-link" title="Student Management System">
+          <div class="brand">
+            <div class="brand-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+              </svg>
+            </div>
+            <div class="brand-text">
+              <div class="brand-title-row">
+                <h1>Student Management System</h1>
+                <span class="db-status-pill">
+                  <span class="pulse-dot"></span>
+                  <span>SQLite Connected</span>
+                </span>
+              </div>
+              <p>Academic Records &amp; Student Directory</p>
+            </div>
+          </div>
+        </a>
+
+        <!-- Working Navigation Menu -->
+        <nav class="app-nav" aria-label="Main Navigation">
+          <a href="/" class="nav-link active">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Dashboard</span>
+          </a>
+          <a href="/students" class="nav-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <span>Student Management</span>
+          </a>
+          <a href="/download-ppt" class="nav-link nav-link-ppt" title="Download 10-Slide Presentation PPTX">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Download PPT</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Welcome Hero Section -->
+      <section class="welcome-hero">
+        <div class="welcome-hero-content">
+          <div class="welcome-badge">
+            <span class="sparkle-icon">✨</span> System Dashboard
+          </div>
+          <h2>Welcome to Student Management System</h2>
+          <p class="welcome-desc">
+            Monitor real-time academic records, track course enrollment distributions, and manage student performance with a seamless, responsive interface.
+          </p>
+          <div class="welcome-actions">
+            <a href="/students" class="btn btn-primary btn-lg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span>Manage Students &amp; Records</span>
+            </a>
+            <a href="/students#studentFormCard" class="btn btn-secondary btn-lg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              <span>Register New Student</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="welcome-hero-card-side">
+          <div class="quick-status-box">
+            <div class="status-box-header">
+              <span class="status-pill-green">🟢 Live Database</span>
+              <span class="status-db-name">students.db</span>
+            </div>
+            <div class="status-info-row">
+              <span class="status-lbl">Database Engine</span>
+              <span class="status-val">SQLite 3</span>
+            </div>
+            <div class="status-info-row">
+              <span class="status-lbl">Active Fields</span>
+              <span class="status-val">USN, Name, Course, Marks</span>
+            </div>
+            <div class="status-info-row">
+              <span class="status-lbl">Integrity Guard</span>
+              <span class="status-val">Unique USN Enforced</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Key Metrics / Summary (4 Cards Grid) -->
+      <section class="dashboard-stats-grid">
+        <!-- Card 1: Total Students -->
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-card-label">Total Students</span>
+            <div class="stat-card-icon-wrap icon-primary">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="stat-card-body">
+            <div class="stat-card-value" id="dashTotalStudents">-</div>
+            <p class="stat-card-subtext">Verified enrolled database records</p>
+          </div>
+          <div class="stat-card-footer">
+            <a href="/students" class="stat-card-link">View all students &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Card 2: Average Marks -->
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-card-label">Class Average Marks</span>
+            <div class="stat-card-icon-wrap icon-blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            </div>
+          </div>
+          <div class="stat-card-body">
+            <div class="stat-card-value" id="dashAvgMarks">-</div>
+            <p class="stat-card-subtext" id="dashAvgSubtext">Overall academic average</p>
+          </div>
+          <div class="stat-card-footer">
+            <span class="grade-pill-tag" id="dashAvgGradePill">Academic Standing</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Top Performer -->
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-card-label">Top Performer</span>
+            <div class="stat-card-icon-wrap icon-amber">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                <path d="M4 22h16"></path>
+                <path d="M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34c3-.6 5-3.05 5-6.66H4c0 3.61 2 6.06 5 6.66z"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="stat-card-body">
+            <div class="stat-card-value text-truncate" id="dashTopStudentName">-</div>
+            <p class="stat-card-subtext" id="dashTopStudentDetail">Highest recorded score</p>
+          </div>
+          <div class="stat-card-footer">
+            <span class="badge-top-score" id="dashTopScoreBadge">0.0%</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Passing Rate -->
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <span class="stat-card-label">Pass Rate</span>
+            <div class="stat-card-icon-wrap icon-emerald">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+          </div>
+          <div class="stat-card-body">
+            <div class="stat-card-value" id="dashPassRate">-</div>
+            <p class="stat-card-subtext" id="dashPassCountText">Scoring &ge; 40.0% passing marks</p>
+          </div>
+          <div class="stat-card-footer">
+            <div class="mini-progress-track">
+              <div class="mini-progress-fill" id="dashPassProgress" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Analytics & Breakdown Section (2-Column Grid) -->
+      <section class="dashboard-analytics-grid">
+        <!-- Course Enrollment Distribution -->
+        <div class="analytics-card">
+          <div class="analytics-card-header">
+            <div class="analytics-title-group">
+              <h3>Course Enrollment Breakdown</h3>
+              <p>Distribution of students across registered academic programs</p>
+            </div>
+            <span class="analytics-badge-tag" id="dashTotalCoursesCount">0 Courses</span>
+          </div>
+          <div class="analytics-card-body" id="courseBreakdownContainer">
+            <div class="loading-placeholder">
+              <div class="spinner"></div>
+              <p>Loading course enrollment distribution...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Performance Grade Distribution -->
+        <div class="analytics-card">
+          <div class="analytics-card-header">
+            <div class="analytics-title-group">
+              <h3>Academic Performance Categories</h3>
+              <p>Breakdown based on university standard grading scale</p>
+            </div>
+            <span class="analytics-badge-tag">100-Point Scale</span>
+          </div>
+          <div class="analytics-card-body" id="gradeBreakdownContainer">
+            <div class="loading-placeholder">
+              <div class="spinner"></div>
+              <p>Loading grade distribution...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recent Students Summary Table -->
+      <section class="table-card">
+        <div class="table-header-strip">
+          <div class="table-header-title">
+            <h2>Recently Enrolled Students</h2>
+            <span class="table-subtitle">Latest additions to the database directory</span>
+          </div>
+          <a href="/students" class="btn btn-secondary btn-md">
+            <span>Go to Student Management</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <div class="table-responsive">
+          <table class="students-table" id="recentStudentsTable">
+            <thead>
+              <tr>
+                <th style="width: 80px; text-align: center;">#</th>
+                <th style="width: 190px;">USN</th>
+                <th>Name</th>
+                <th>Course</th>
+                <th style="width: 220px;">Marks</th>
+                <th style="text-align: center; width: 140px;">Status</th>
+              </tr>
+            </thead>
+            <tbody id="recentStudentsTableBody">
+              <!-- Dynamically populated via dashboard.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <div id="recentEmptyState" class="state-container" style="display: none;">
+          <div class="empty-icon">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+              <path d="M9 12h6"></path>
+              <path d="M9 16h6"></path>
+            </svg>
+          </div>
+          <h3>No Student Records in Database</h3>
+          <p>Click "Register New Student" to add your first student record.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      Student Management System | Copyright &copy; 2026
+    </footer>
+  </div>
+
+  <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>

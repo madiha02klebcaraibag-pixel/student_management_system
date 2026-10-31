@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Student Management System</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="top-accent-bar"></div>
+
+<div class="app-container">
+
+    <!-- Header -->
+    <header class="app-header">
+        <div class="header-content">
+
+            <a href="/" class="brand-link">
+                <div class="brand">
+                    <div class="brand-icon">
+                        🎓
+                    </div>
+
+                    <div class="brand-text">
+                        <div class="brand-title-row">
+                            <h1>Student Management System</h1>
+                            <span class="db-status-pill">
+                                <span class="pulse-dot"></span>
+                                SQLite Connected
+                            </span>
+                        </div>
+
+                        <p>Academic Records &amp; Student Directory</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Navigation without PPT -->
+            <nav class="app-nav" aria-label="Main Navigation">
+
+                <a href="/" class="nav-link active">
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="/students" class="nav-link">
+                    <span>Student Management</span>
+                </a>
+
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Welcome Section -->
+        <section class="welcome-hero">
+
+            <div class="welcome-hero-content">
+
+                <div class="welcome-badge">
+                    ✨ System Dashboard
+                </div>
+
+                <h2>Welcome to Student Management System</h2>
+
+                <p class="welcome-desc">
+                    Monitor real-time academic records, track course enrollment distributions,
+                    and manage student performance with a seamless, responsive interface.
+                </p>
+
+                <div class="welcome-actions">
+
+                    <a href="/students" class="btn btn-primary btn-lg">
+                        Manage Students &amp; Records
+                    </a>
+
+                    <a href="/students#studentFormCard" class="btn btn-secondary btn-lg">
+                        + Register New Student
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="welcome-hero-card-side">
+
+                <div class="quick-status-box">
+
+                    <div class="status-box-header">
+                        <span class="status-pill-green">🟢 Live Database</span>
+                        <span class="status-db-name">students.db</span>
+                    </div>
+
+                    <div class="status-info-row">
+                        <span class="status-lbl">Database Engine</span>
+                        <span class="status-val">SQLite 3</span>
+                    </div>
+
+                    <div class="status-info-row">
+                        <span class="status-lbl">Active Fields</span>
+                        <span class="status-val">USN, Name, Course, Marks</span>
+                    </div>
+
+                    <div class="status-info-row">
+                        <span class="status-lbl">Integrity Guard</span>
+                        <span class="status-val">Unique USN Enforced</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Statistics -->
+        <section class="dashboard-stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-label">Total Students</span>
+                </div>
+
+                <div class="stat-card-body">
+                    <div class="stat-card-value" id="dashTotalStudents">-</div>
+                    <p class="stat-card-subtext">
+                        Verified enrolled database records
+                    </p>
+                </div>
+
+                <div class="stat-card-footer">
+                    <a href="/students" class="stat-card-link">
+                        View all students →
+                    </a>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-label">Class Average Marks</span>
+                </div>
+
+                <div class="stat-card-body">
+                    <div class="stat-card-value" id="dashAvgMarks">-</div>
+                    <p class="stat-card-subtext" id="dashAvgSubtext">
+                        Overall academic average
+                    </p>
+                </div>
+
+                <div class="stat-card-footer">
+                    <span class="grade-pill-tag" id="dashAvgGradePill">
+                        Academic Standing
+                    </span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-label">Top Performer</span>
+                </div>
+
+                <div class="stat-card-body">
+                    <div class="stat-card-value text-truncate" id="dashTopStudentName">-</div>
+                    <p class="stat-card-subtext" id="dashTopStudentDetail">
+                        Highest recorded score
+                    </p>
+                </div>
+
+                <div class="stat-card-footer">
+                    <span class="badge-top-score" id="dashTopScoreBadge">0.0%</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-card-label">Pass Rate</span>
+                </div>
+
+                <div class="stat-card-body">
+                    <div class="stat-card-value" id="dashPassRate">-</div>
+                    <p class="stat-card-subtext" id="dashPassCountText">
+                        Scoring ≥ 40.0% passing marks
+                    </p>
+                </div>
+
+                <div class="stat-card-footer">
+                    <div class="mini-progress-track">
+                        <div class="mini-progress-fill" id="dashPassProgress" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Analytics Section -->
+        <section class="dashboard-analytics-grid">
+
+            <div class="analytics-card">
+
+                <div class="analytics-card-header">
+                    <div class="analytics-title-group">
+                        <h3>Course Enrollment Breakdown</h3>
+                        <p>Distribution of students across registered academic programs</p>
+                    </div>
+
+                    <span class="analytics-badge-tag" id="dashTotalCoursesCount">
+                        0 Courses
+                    </span>
+                </div>
+
+                <div class="analytics-card-body" id="courseBreakdownContainer">
+                    <div class="loading-placeholder">
+                        <div class="spinner"></div>
+                        <p>Loading course enrollment distribution...</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="analytics-card">
+
+                <div class="analytics-card-header">
+                    <div class="analytics-title-group">
+                        <h3>Academic Performance Categories</h3>
+                        <p>Breakdown based on university standard grading scale</p>
+                    </div>
+
+                    <span class="analytics-badge-tag">100-Point Scale</span>
+                </div>
+
+                <div class="analytics-card-body" id="gradeBreakdownContainer">
+                    <div class="loading-placeholder">
+                        <div class="spinner"></div>
+                        <p>Loading grade distribution...</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Recent Students -->
+        <section class="table-card">
+
+            <div class="table-header-strip">
+
+                <div class="table-header-title">
+                    <h2>Recently Enrolled Students</h2>
+                    <span class="table-subtitle">
+                        Latest additions to the database directory
+                    </span>
+                </div>
+
+                <a href="/students" class="btn btn-secondary btn-md">
+                    Go to Student Management →
+                </a>
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="students-table" id="recentStudentsTable">
+
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>USN</th>
+                            <th>Name</th>
+                            <th>Course</th>
+                            <th>Marks</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="recentStudentsTableBody">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div id="recentEmptyState" class="state-container" style="display: none;">
+
+                <div class="empty-icon">📋</div>
+
+                <h3>No Student Records in Database</h3>
+
+                <p>
+                    Click "Register New Student" to add your first student record.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        Student Management System | Copyright &copy; 2026
+    </footer>
+
+</div>
+
+<script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+
+</body>
+</html>
